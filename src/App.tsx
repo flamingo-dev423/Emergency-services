@@ -1,8 +1,8 @@
-import LoginForm from './components/LoginForm'
+import SurveyForm from './components/survey-form'
 
 function App() {
   return (
-    <LoginForm />
+    <SurveyForm />
   )
 }
 
