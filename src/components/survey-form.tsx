@@ -49,7 +49,7 @@ export default function SurveyForm() {
     const formData = new FormData(form)
 
     try {
-      const response = await fetch("https://formsubmit.co/Movewell4@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/Movewell4@gmail.com", {
         method: "POST",
         body: formData,
         headers: {
