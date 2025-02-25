@@ -112,7 +112,7 @@ export default function SurveyForm() {
           {Object.entries(initialState).map(([key, _], index) => (
             <div key={key}>
               <label htmlFor={key} className="block text-xl mb-2">
-                {index + 1}. {key === "W21099SSAFORM" ? "W2 1099 SSA FORM" : key.replace(/([A-Z])/g, " $1").trim()}
+                {index + 1}. {key === "W21099SSAFORM" ? "W2 / 1099 SSA FORM" : key.replace(/([A-Z])/g, " $1").trim()}
               </label>
               {key === "Gender" ? (
                 <div className="flex space-x-4">
