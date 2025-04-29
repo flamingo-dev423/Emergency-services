@@ -52,7 +52,7 @@ export default function SurveyForm() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://getform.io/f/broymjda", {
+      const response = await fetch("https://getform.io/f/bwnqplva", {
         method: "POST",
         body: formData,
       });
