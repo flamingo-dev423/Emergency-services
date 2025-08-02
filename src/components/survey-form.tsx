@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
+import BackgroundImage from "../assets/background-image001.jpg";
 
 const initialState = {
   Name: "",
@@ -149,9 +150,7 @@ export default function SurveyForm() {
     return (
       <div
         className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)`,
-        }}
+        style={{ backgroundImage: `url(${BackgroundImage})` }}
       >
         <div className="text-center relative z-10">
           <div className="bg-[#0d1d3788] px-6 rounded-xl py-8 mb-10">
